@@ -1,6 +1,21 @@
 const express=require('express');
 const router=express.Router();
 
+
+router.post('/Create',(req,res,next)=>{
+
+    const dataCreated= {
+        name:req.body.name,
+        price:req.body.price
+    
+    }
+
+    res.status(201).json({
+        message:"Data Created Successfully",
+        result:dataCreated
+    })
+})
+
 router.get('/',(req,res,next)=>{
 
     res.status(201).json({
