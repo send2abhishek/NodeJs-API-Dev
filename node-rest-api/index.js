@@ -1,10 +1,7 @@
 const express=require('express');
 const app=express();
-app.use((req,res,next)=>{
+const productRoute=require('./Api/Products/products');
 
-    res.status(200).json({
-        message:'Its working '
-    });
-});
+app.use('/product',productRoute);
 
 module.exports=app;
