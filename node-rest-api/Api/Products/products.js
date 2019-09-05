@@ -14,7 +14,7 @@ router.post('/Create',(req,res,next)=>{
         message:"Data Created Successfully",
         result:dataCreated
     })
-})
+});
 
 router.get('/',(req,res,next)=>{
 
