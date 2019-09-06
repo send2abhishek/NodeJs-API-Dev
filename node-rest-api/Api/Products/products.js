@@ -22,7 +22,7 @@ router.post('/Create',(req,res,next)=>{
         })
         .catch(error =>{
             console.log(error);
-            res.status(201).json({
+            res.status(500).json({
                 message:"Something Went Wrong",
                 info:error.message
             })
@@ -34,11 +34,12 @@ router.post('/Create',(req,res,next)=>{
 router.get('/',(req,res,next)=>{
 
     Product.find()
+        .select("_id price name")
         .then(doc =>{
 
             res.status(200).json({
-                result: "Result you can find below",
-                data:doc
+                count: doc.length,
+                product:doc
 
                 });
     })

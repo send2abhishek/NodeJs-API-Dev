@@ -3,9 +3,10 @@ const mongoose=require('mongoose');
 const ProductSchema=mongoose.Schema({
 
     _id:mongoose.Schema.Types.ObjectId,
-    name:String,
-    price:String,
-    desc:String
+    name:{type: String, required: true},
+    //price:Number,
+    price:{type: Number, required: true},
+    desc:{type: String, required: true}
     
 });
 
