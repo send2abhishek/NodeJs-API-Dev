@@ -3,6 +3,7 @@ const app=express();
 const bodyParser=require('body-parser');
 const productRoute=require('./Api/Products/products');
 const orderRoute=require('./Api/Products/order');
+const userRoute=require('./Api/Products/User');
 const mongoose=require('mongoose');
 
 // It will parse incomming post request body
@@ -30,6 +31,7 @@ mongoose.connect("mongodb://localhost:27017/aryan",{
 
 app.use('/product',productRoute);
 app.use('/order',orderRoute);
+app.use('/user',userRoute);
 
 app.use((req,res,next)=>{
     const error=new Error('Page Not found');
