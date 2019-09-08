@@ -5,7 +5,7 @@ const ProductSchema=mongoose.Schema({
     _id:mongoose.Schema.Types.ObjectId,
     name:{type: String, required: true},
     //price:Number,
-    price:{type: Number, required: true},
+    price:{type: String, required: true},
     desc:{type: String, required: true}
     
 });

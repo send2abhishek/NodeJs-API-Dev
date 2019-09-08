@@ -17,7 +17,7 @@ router.post('/Create',(req,res,next)=>{
             console.log("Data Created Successfully",result);
             res.status(201).json({
                 message:"Data Created Successfully",
-                info:result 
+                response : result
             })
         })
         .catch(error =>{
@@ -34,12 +34,24 @@ router.post('/Create',(req,res,next)=>{
 router.get('/',(req,res,next)=>{
 
     Product.find()
-        .select("_id price name")
+        // .populate('Product')
+        .select("_id price name desc ")
         .then(doc =>{
 
             res.status(200).json({
                 count: doc.length,
-                product:doc
+                products: doc.map(data =>{
+                   return{
+                       _id:data._id,
+                       productName:data.name,
+                       productPrice:data.price,
+                        productDesc:data.desc,
+                        request:{
+                            type:'GET',
+                            url:'http://localhost:3000/product' + data._id
+                        }
+                   }
+                })
 
                 });
     })
