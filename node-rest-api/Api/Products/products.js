@@ -2,9 +2,10 @@ const express=require('express');
 const router=express.Router();
 const Product=require("../Models/ProductModel");
 const mongoose=require("mongoose");
+const checkAuth=require('../Middleware/checkAuth')
 
 
-router.post('/Create',(req,res,next)=>{
+router.post('/Create',checkAuth,(req,res,next)=>{
 
     const product=new Product({
         _id: new mongoose.Types.ObjectId,
@@ -31,7 +32,9 @@ router.post('/Create',(req,res,next)=>{
     
 });
 
-router.get('/',(req,res,next)=>{
+router.get('/',checkAuth,(req,res,next)=>{
+
+    console.log("Auth user data",req.userData);
 
     Product.find()
         // .populate('Product')
