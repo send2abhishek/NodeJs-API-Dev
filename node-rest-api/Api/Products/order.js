@@ -3,8 +3,9 @@ const router=express.Router();
 const mongoose=require("mongoose");
 const Order=require("../Models/OrderModel");
 const Product=require("../Models/ProductModel");
+const checkAuth=require('../Middleware/checkAuth')
 
-router.post('/orders',async (req,res,next)=>{
+router.post('/orders',checkAuth,async (req,res,next)=>{
     const IsOrder= await QueryProducID(req.body.productId);
     console.log("Product avail-",IsOrder)
     if(IsOrder){
@@ -72,7 +73,7 @@ async function QueryProducID(product){
 
 }
 
-router.get('/',(req,res,next)=>{
+router.get('/',checkAuth,(req,res,next)=>{
 
     Order.find()
         .select(" product quantity")
